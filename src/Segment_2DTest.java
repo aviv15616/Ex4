@@ -7,12 +7,27 @@ class Segment_2DTest {
 
     public void testContains() {
         Point_2D p1 = new Point_2D(0, 0);
-        Point_2D p2 = new Point_2D(2, 2);
-        Point_2D p3 = new Point_2D(1, 1);
+        Point_2D p2 = new Point_2D(4, 4);
+        GeoShape line = new Segment_2D(p1, p2);
 
-        Segment_2D segment = new Segment_2D(p1, p2);
+        // Test case 1: Point lies on the line
+        Point_2D point1 = new Point_2D(2, 2);
+        assertTrue(line.contains(point1));
 
-        assertTrue(segment.contains(p3));
+        // Test case 2: Point does not lie on the line
+        Point_2D point2 = new Point_2D(3, 5);
+        assertFalse(line.contains(point2));
+
+        // Test case 3: Vertical line (infinite slope)
+        Point_2D p3 = new Point_2D(2, 1);
+        Point_2D p4 = new Point_2D(2, 5);
+        GeoShape verticalLine = new Segment_2D(p3, p4);
+
+        Point_2D point3 = new Point_2D(2, 3);
+        assertTrue(verticalLine.contains(point3));
+
+        Point_2D point4 = new Point_2D(3, 3);
+        assertFalse(verticalLine.contains(point4));
     }
 
     @Test

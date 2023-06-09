@@ -66,6 +66,13 @@ public class Circle_2D implements GeoShape {
 			return true;
 		return false;
 	}
+	public Point_2D[] getAllPoints() {
+		Point_2D[] points = new Point_2D[1];
+		points[0] = _center;
+
+
+		return points;
+	}
 
 	/**
 	 * Calculates and returns the area of the circle.
@@ -73,7 +80,7 @@ public class Circle_2D implements GeoShape {
 	 */
 	@Override
 	public double area() {
-		double ans = (Math.PI) * Math.pow(this._radius, 2);
+		double ans = Math.PI * _radius* _radius;
 		return ans;
 	}
 
@@ -93,7 +100,8 @@ public class Circle_2D implements GeoShape {
 	 */
 	@Override
 	public void translate(Point_2D vec) {
-		this._center = new Point_2D(vec.x(), vec.y());
+
+		this._center = new Point_2D(this._center.x()+vec.x(), this._center.y()+vec.y());
 	}
 
 	/**
@@ -114,7 +122,7 @@ public class Circle_2D implements GeoShape {
 	@Override
 	public void scale(Point_2D center, double ratio) {
 		this._radius = ratio * this._radius;
-		this._center = new Point_2D(center.x(), center.y());
+		this._center.scale(center,ratio);
 	}
 
 	/**

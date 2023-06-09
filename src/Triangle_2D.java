@@ -32,6 +32,7 @@ public class Triangle_2D implements GeoShape {
 		_p2=t1.get_p2();
 		_p3=t1.get_p3();
 	}
+
 	public Point_2D[] getAllPoints() {
 		Point_2D[] points = new Point_2D[3];
 		points[0] = _p1;
@@ -39,6 +40,7 @@ public class Triangle_2D implements GeoShape {
 		points[2] = _p3;
 		return points;
 	}
+
 	@Override
 	public boolean contains(Point_2D ot) {
 
@@ -62,6 +64,12 @@ public class Triangle_2D implements GeoShape {
 	@Override
 	public double perimeter() {
 		return _p1.distance(_p2)+_p1.distance(_p3)+_p2.distance(_p3);
+	}
+	@Override
+	public String toString() {
+		String ans = _p1.toString() + "," + _p2.toString() + "," + _p3.toString();
+
+		return ans;
 	}
 
 	@Override

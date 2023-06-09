@@ -1,12 +1,23 @@
-//
-//
-//public class Main {
-//    public static void main(String[] args) {
-//        Point_2D a2 = new Point_2D(2,2);
-//        Point_2D a3 = new Point_2D(5,5);
-//
-//        GeoShape a1= new Rect_2D(a2,a3) ;
-//        ((Rect_2D) a1).getOtherPoints();
-//
-//    }
-//}
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a new Polygon_2D object using the default constructor
+        Polygon_2D polygon1 = new Polygon_2D();
+
+        // Create a new Polygon_2D object using the copy constructor
+        Polygon_2D polygon2 = new Polygon_2D(polygon1);
+
+        // Add points to the polygon using the addPoint method
+        Point_2D point1 = new Point_2D(0, 0);
+        Point_2D point2 = new Point_2D(1, 1);
+        Point_2D point3 = new Point_2D(2, 2);
+
+        polygon1.add(point1);
+        polygon1.add(point2);
+        polygon1.add(point3);
+
+        polygon1.toString();
+    }
+}

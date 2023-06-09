@@ -15,6 +15,13 @@ public class Segment_2D implements GeoShape {
 		this._p2=b;
 
 	}
+	public Point_2D[] getAllPoints() {
+		Point_2D[] points = new Point_2D[2];
+		points[0] = _p1;
+		points[1] = _p2;
+
+		return points;
+	}
 	public Segment_2D(Segment_2D t1) {
 		this._p1=t1.get_p1();
 		this._p2=t1.get_p2();
@@ -28,14 +35,34 @@ public class Segment_2D implements GeoShape {
 		return this._p2;
 	}
 
-	@Override
-	public boolean contains(Point_2D ot) {
-		double m=(this._p1.y()-this._p2.y())/(this._p1.x()-this._p2.x());
-		double b=this._p1.y()-m*this._p1.x();
-	if(m*ot.x()+b==ot.y())
+//	@Override
+//	public boolean contains(Point_2D ot) {
+//		double m=(this._p1.y()-this._p2.y())/(this._p1.x()-this._p2.x());
+//		double b=this._p1.y()-m*this._p1.x();
+//		if(_p1.x()==_p2.x()&&ot.x()==_p1.x()) {
+//
+//				return true;
+//		}
+//		else if(_p1.y()==_p2.y()&&ot.y()==_p1.y())
+//			return true;
+//		else if(m*ot.x()+b==ot.y())
+//			return true;
+//		return false;
+//		}
+//
+@Override
+public boolean contains(Point_2D ot) {
+	if(_p1.distance(ot)+_p2.distance(ot)==_p1.distance(_p2))
 		return true;
 	return false;
+}
+	@Override
+	public String toString() {
+		String ans = _p1.toString() + "," + _p2.toString();
+		return ans;
 	}
+
+
 
 	@Override
 	public double area() {
@@ -54,14 +81,14 @@ public class Segment_2D implements GeoShape {
 
 	@Override
 	public void translate(Point_2D vec) {
-		this._p1=new Point_2D(this._p1.x()+vec.x(),this._p1.y()+vec.y());
-		this._p2=new Point_2D(this._p2.x()+vec.x(),this._p2.y()+vec.y());
+		_p1.move(vec);
+		_p2.move(vec);
 
 	}
 
 	@Override
 	public GeoShape copy() {
-		GeoShape copy = new Segment_2D(this._p1,this._p2);
+		Segment_2D copy = new Segment_2D(this._p1,this._p2);
 		return copy;
 	}
 
